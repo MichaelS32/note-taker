@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+// npm to set unique id
 const { v4: uuidv4 } = require('uuid');
 
 module.exports = app => {
@@ -27,10 +28,19 @@ module.exports = app => {
 
         // Deletes note with specific id
         app.delete('/api/notes/:id', function(req, res) {
-            let noteID = req.params.id.toString();
-            dbUpdate();
-            console.log(`Deleted note belonging to id:${req.params.id}`);
-        });
+            let noteId = req.params.id.toString();
+
+            // filter data to get notes except the one to delete
+            const newData = data.filter( note => note.id.toString() !== noteId );
+
+            // Write new data to 'db.json' file
+            fs.writeFileSync('./db/db.json', JSON.stringify(newData));
+
+            // Send response
+            response.json(newData);
+                dbUpdate();
+                res.send(`Deleted note belonging to id:${req.params.id}`);
+            });
 
         // HTML Routes
         app.get('/notes', function(req, res) {
