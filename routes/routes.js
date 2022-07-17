@@ -17,7 +17,7 @@ module.exports = app => {
         newNote.id = uuidv4();
         let data = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
         data.push(newNote);
-        fs.writeFileSync('./db/db.json', JSON.stringify(data));
+        dbUpdate();
         return console.log(`Added new note: ${newNote.title}`);
     });
 
@@ -35,7 +35,7 @@ module.exports = app => {
         const newData = data.filter( note => note.id.toString() !== noteId );
 
         // Write new data to 'db.json' file
-        fs.writeFileSync('./db/db.json', JSON.stringify(newData));
+        dbUpdate();
 
         // Send response
         res.send(`Deleted note belonging to id:${req.params.id}`);
