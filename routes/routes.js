@@ -27,7 +27,7 @@ module.exports = app => {
 
         // Deletes note with specific id
         app.delete('/api/notes/:id', function(req, res) {
-            notes.splice(req.params.id, 1);
+            let noteID = req.params.id.toString();
             dbUpdate();
             console.log(`Deleted note belonging to id:${req.params.id}`);
         });
