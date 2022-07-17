@@ -1,23 +1,21 @@
 const fs = require('fs');
 const path = require('path');
+const { v4: uuidv4 } = require('uuid');
 
 module.exports = app => {
-    fs.readFile('db/db.json','utf-8', (err, data) => {
-        if (err) throw err;
-
-        const notes = JSON.parse(data);
-
+    let data = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
 
         // API routes
         // Notes get route
         app.get('/api/notes', function(req, res) {
-            res.json(notes);
+            res.json(data);
         });
 
         // Notes post route
         app.post('/api/notes', function(req, res) {
             let newNote = req.body;
-            notes.push(newNote);
+            newNote.id = uuidv4();
+            data.push(newNote);
             dbUpdate();
             return console.log(`Added new note: ${newNote.title}`);
         });
@@ -49,5 +47,4 @@ module.exports = app => {
             });
         };
 
-    });
 };
