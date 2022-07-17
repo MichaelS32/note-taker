@@ -23,7 +23,7 @@ module.exports = app => {
         });
 
         // retrieves note by id
-        app.get('/aoi/notes/:id', function(req, res) {
+        app.get('/api/notes/:id', function(req, res) {
             res.json(notes[req.params.id]);
         })
 
