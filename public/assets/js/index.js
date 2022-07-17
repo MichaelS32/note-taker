@@ -3,7 +3,6 @@ let noteText;
 let saveNoteBtn;
 let newNoteBtn;
 let noteList;
-let noteId;
 
 if (window.location.pathname === '/notes') {
   noteTitle = document.querySelector('.note-title');
@@ -43,8 +42,8 @@ const saveNote = note =>
     body: JSON.stringify(note)
   });
 
-const deleteNote = noteId =>
-  fetch(`/api/notes/${noteId}`, {
+const deleteNote = id =>
+  fetch(`/api/notes/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'
