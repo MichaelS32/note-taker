@@ -14,6 +14,7 @@ module.exports = app => {
     // Notes post route
     app.post('/api/notes', function(req, res) {
         let newNote = req.body;
+        // gives each new note a unique id
         newNote.id = uuidv4();
         let data = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
         data.push(newNote);
@@ -26,7 +27,7 @@ module.exports = app => {
         res.json(notes[req.params.id]);
     });
 
-    // Deletes note with specific id
+    // Delets notes by id
     app.delete('/api/notes/:id', function(req, res) {
         let noteId = req.params.id.toString();
         let data = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
@@ -41,19 +42,13 @@ module.exports = app => {
         res.send(`Deleted note belonging to id:${req.params.id}`);
         
     });
+
     // HTML Routes
     app.get('/notes', function(req, res) {
         res.sendFile(path.join(__dirname, '../public/notes.html'));
     });
+
     app.get('*', function(req, res) {
         res.sendFile(path.join(__dirname, '../public/index.html'))
     });
-
-    function dbUpdate() {
-        fs.writeFile('db/db.json', JSON.stringify(notes, '/t'), err => {
-            if (err) throw err;
-            return true;
-        });
-    };
-
 };

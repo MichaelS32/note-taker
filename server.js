@@ -1,11 +1,10 @@
 // importing express package
 const express = require('express');
-const fs = require('fs');
-const path = require('path');
 
 // creating express server
 const app = express();
 
+// use port assigned by heroku or use 3001
 const PORT = process.env.PORT || 3001;
 
 app.use(express.urlencoded({ extended: true }));
