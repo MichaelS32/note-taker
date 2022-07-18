@@ -9,7 +9,7 @@ An app to write, store, and delete notes. The app uses express for the backend a
 3. Run `npm install` to install all the dependencies.
 4. To run the app locally, run `node server.js` in the command line then open `http://localhost:3001` in the browser.
 
---The app is also live on heroku  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://gentle-headland-13557.herokuapp.com/notes)
+--The app is also live on heroku  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://gentle-headland-13557.herokuapp.com)
 
 ## Demonstration
 ![Gif demo of README-generator](./public/assets/images/note-taker.gif.gif)  
@@ -22,7 +22,7 @@ To begin, click on the Get Started button on the home page to start adding a tit
 ## Links
 [Github Repository:](https://github.com/MichaelS32/note-taker)  
 
-[Deployed Appliation:](https://gentle-headland-13557.herokuapp.com/notes)
+[Deployed Appliation:](https://gentle-headland-13557.herokuapp.com)
 
 ## Contributors
   [MichaelS32](https://github.com/MichaelS32)
