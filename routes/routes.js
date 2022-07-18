@@ -5,13 +5,13 @@ const { v4: uuidv4 } = require('uuid');
 
 module.exports = app => {
     // API routes
-    // Notes get route
+    // Notes 'get' route
     app.get('/api/notes', function(req, res) {
         let data = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
         res.json(data);
     });
 
-    // Notes post route
+    // Notes 'post' route
     app.post('/api/notes', function(req, res) {
         let newNote = req.body;
         // gives each new note a unique id
@@ -27,7 +27,7 @@ module.exports = app => {
         res.json(notes[req.params.id]);
     });
 
-    // Delets notes by id
+    // 'Delete' notes by id
     app.delete('/api/notes/:id', function(req, res) {
         let noteId = req.params.id.toString();
         let data = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
